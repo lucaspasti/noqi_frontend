@@ -24,3 +24,19 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer utilities {
+  @keyframes borderColor {
+    0%,
+    100% {
+      border-color: #5e5959;
+    }
+    50% {
+      border-color: #282727;
+    }
+  }
+
+  .animate-borderColor {
+    animation: borderColor 4s infinite;
+  }
+}
