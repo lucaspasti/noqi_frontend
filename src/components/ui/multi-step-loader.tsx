@@ -94,11 +94,13 @@ export const MultiStepLoader = ({
   loading,
   duration = 2000,
   loop = true,
+  onClose, // nova prop
 }: {
   loadingStates: LoadingState[];
   loading?: boolean;
   duration?: number;
   loop?: boolean;
+  onClose?: () => void; // função que será chamada quando terminar
 }) => {
   const [currentState, setCurrentState] = useState(0);
 
@@ -107,38 +109,36 @@ export const MultiStepLoader = ({
       setCurrentState(0);
       return;
     }
+
     const timeout = setTimeout(() => {
-      setCurrentState((prevState) =>
-        loop
-          ? prevState === loadingStates.length - 1
-            ? 0
-            : prevState + 1
-          : Math.min(prevState + 1, loadingStates.length - 1)
-      );
+      if (loop) {
+        setCurrentState((prev) =>
+          prev === loadingStates.length - 1 ? 0 : prev + 1
+        );
+      } else {
+        if (currentState === loadingStates.length - 1) {
+          onClose?.(); // chama a função do pai quando terminar
+        } else {
+          setCurrentState((prev) => prev + 1);
+        }
+      }
     }, duration);
 
     return () => clearTimeout(timeout);
-  }, [currentState, loading, loop, loadingStates.length, duration]);
+  }, [currentState, loading, loop, loadingStates.length, duration, onClose]);
+
   return (
     <AnimatePresence mode="wait">
       {loading && (
         <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-          }}
-          exit={{
-            opacity: 0,
-          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           className="w-full h-full fixed inset-0 z-[100] flex items-center justify-center backdrop-blur-2xl"
         >
-          <div className="h-96  relative">
+          <div className="h-96 relative">
             <LoaderCore value={currentState} loadingStates={loadingStates} />
           </div>
-
-          <div className="bg-gradient-to-t inset-x-0 z-20 bottom-0 bg-white dark:bg-black h-full absolute [mask-image:radial-gradient(900px_at_center,transparent_30%,white)]" />
         </motion.div>
       )}
     </AnimatePresence>
