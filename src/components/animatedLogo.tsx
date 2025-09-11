@@ -1,4 +1,3 @@
-// components/AnimatedLogo.tsx
 "use client";
 
 import React from "react";
@@ -26,43 +25,54 @@ export const AnimatedLogo: React.FC<AnimatedLogoProps> = ({
         fontSize="80"
         fontWeight="bold"
       >
-        <tspan fill="#333333">
+        {/* Letra 'n' */}
+        <tspan>
           n
           <animate
             attributeName="fill"
-            values="#333333;#666666;#999999;#333333"
-            dur="4s"
+            values="#F87171;#ED8989;#C499C4;#9FA6E2;#60A5FA;#9FA6E2;#C499C4;#ED8989;#F87171"
+            dur="6s"
             repeatCount="indefinite"
+            keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1"
           />
         </tspan>
-        <tspan fill="#444444">
+
+        {/* Letra 'o' */}
+        <tspan>
           o
           <animate
             attributeName="fill"
-            values="#444444;#777777;#bbbbbb;#444444"
-            dur="4s"
+            values="#F87171;#ED8989;#C499C4;#9FA6E2;#60A5FA;#9FA6E2;#C499C4;#ED8989;#F87171"
+            dur="6s"
             repeatCount="indefinite"
-            begin="0.5s"
+            begin="0.75s"
+            keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1"
           />
         </tspan>
-        <tspan fill="#555555">
+
+        {/* Letra 'q' */}
+        <tspan>
           q
           <animate
             attributeName="fill"
-            values="#555555;#888888;#cccccc;#555555"
-            dur="4s"
+            values="#F87171;#ED8989;#C499C4;#9FA6E2;#60A5FA;#9FA6E2;#C499C4;#ED8989;#F87171"
+            dur="6s"
             repeatCount="indefinite"
-            begin="1s"
+            begin="1.5s"
+            keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1"
           />
         </tspan>
-        <tspan fill="#666666">
+
+        {/* Letra 'i' */}
+        <tspan>
           i
           <animate
             attributeName="fill"
-            values="#666666;#999999;#dddddd;#666666"
-            dur="4s"
+            values="#F87171;#ED8989;#C499C4;#9FA6E2;#60A5FA;#9FA6E2;#C499C4;#ED8989;#F87171"
+            dur="6s"
             repeatCount="indefinite"
-            begin="1.5s"
+            begin="2.25s"
+            keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1"
           />
         </tspan>
       </text>
