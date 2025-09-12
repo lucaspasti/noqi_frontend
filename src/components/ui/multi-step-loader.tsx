@@ -23,7 +23,7 @@ const CheckFilled = ({ className }: { className?: string }) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      fill="currentColor"
+      fill="red"
       className={cn("w-6 h-6 ", className)}
     >
       <path
@@ -62,22 +62,21 @@ const LoaderCore = ({
           >
             <div>
               {index > value && (
-                <CheckIcon className="text-black dark:text-white" />
+                <CheckIcon className="text-blue-400 dark:text-white" />
               )}
               {index <= value && (
                 <CheckFilled
                   className={cn(
-                    "text-black dark:text-white",
-                    value === index &&
-                      "text-black dark:text-lime-500 opacity-100"
+                    "text-blue-400",
+                    value === index && "text-black opacity-100"
                   )}
                 />
               )}
             </div>
             <span
               className={cn(
-                "text-black dark:text-white",
-                value === index && "text-black dark:text-lime-500 opacity-100"
+                "text-blue-400",
+                value === index && "text-blue-400 opacity-100"
               )}
             >
               {loadingState.text}
