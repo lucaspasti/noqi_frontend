@@ -4,7 +4,8 @@ import DraggableButton from "@/components/infoButton";
 import { PixelatedCanvasDemo } from "@/components/hero";
 import { MultiStepLoader } from "@/components/ui/multi-step-loader";
 import { useState } from "react";
-import LoginButton from "@/components/loginButton";
+import LoginPopupWrapper from "@/components/loginButton";
+import { Toaster } from "sonner";
 
 export default function Home() {
   const [showLoader, setShowLoader] = useState(false);
@@ -21,20 +22,25 @@ export default function Home() {
     { text: "Seja bem-vind@ á plataforma noqi! " },
     { text: "Onde oportunidades acontecem." },
   ];
+
   const handleClick = () => {
     setShowLoader(true); // Abre o loader ao clicar
   };
 
   return (
     <div className="relative h-screen">
+      <Toaster position="top-right" richColors  />
+
       <PixelatedCanvasDemo />
 
       {/* Botão draggable */}
       <div style={{ position: "absolute", top: "80%", right: "5%" }}>
         <DraggableButton onClick={handleClick} />
       </div>
+
+      {/* Login/Registro */}
       <div style={{ position: "absolute", top: "80%", right: "2%" }}>
-        <LoginButton />
+        <LoginPopupWrapper /> {/* aqui você coloca o wrapper */}
       </div>
 
       {/* Loader */}
@@ -42,7 +48,7 @@ export default function Home() {
         loadingStates={loadingStates}
         loading={showLoader}
         loop={false}
-        onClose={() => setShowLoader(false)} // fecha o loader automaticamente
+        onClose={() => setShowLoader(false)}
       />
     </div>
   );
