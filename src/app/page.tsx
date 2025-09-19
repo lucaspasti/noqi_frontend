@@ -29,12 +29,12 @@ export default function Home() {
 
   return (
     <div className="relative h-screen">
-      <Toaster position="top-right" richColors  />
+      <Toaster position="top-right" richColors />
 
       <PixelatedCanvasDemo />
 
       {/* Botão draggable */}
-      <div style={{ position: "absolute", top: "80%", right: "5%" }}>
+      <div style={{ position: "absolute", top: "80%", right: "7%" }}>
         <DraggableButton onClick={handleClick} />
       </div>
 

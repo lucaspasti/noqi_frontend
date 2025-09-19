@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation"; // ✅ se você está usando App Router (app/)
 
 const LoginButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
   return (
@@ -27,6 +28,7 @@ const LoginButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
 };
 
 const LoginPopup: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+  const router = useRouter();
   const [isLogin, setIsLogin] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -46,7 +48,9 @@ const LoginPopup: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         });
         const data = await response.json();
         if (response.ok) {
+          localStorage.setItem("token", data.accessToken); // ✅ usar o mesmo nome que o backend retorna
           toast.success("Login realizado com sucesso!");
+          router.push("/home");
           console.log("Login successful:", data);
         } else {
           toast.error(data.message || "Falha no login");
@@ -101,7 +105,10 @@ const LoginPopup: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col gap-4 text-white"
+            >
               {!isLogin && (
                 <Input
                   type="text"

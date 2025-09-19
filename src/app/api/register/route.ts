@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
     // NOTE: The external API URL should be in an environment variable
     console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
+      `${process.env.NEXT_PUBLIC_API_URL}/users/register`,
       {
         method: "POST",
         headers: {
